@@ -10,9 +10,17 @@ export default defineNuxtConfig({
     'nuxt-primevue'
   ],
   primevue: {
+    options: {
+      ripple: true,
+    },
     components: {
       prefix: 'Prime'
     }
   },
-  css: ['primevue/resources/themes/viva-light/theme.css']
+  css: [
+    'primevue/resources/themes/viva-light/theme.css',
+    '@/assets/styles/main.scss',
+    'primeicons/primeicons.css',
+    'primeflex/primeflex.css'
+  ],
 })
