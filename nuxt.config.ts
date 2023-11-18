@@ -5,8 +5,7 @@ export default defineNuxtConfig({
       title: "Stock Info",
     },
   },
-  theme:'light',
-  devtools: { enabled: true },
+  devtools: {enabled: true},
   modules: [
     'nuxt-primevue'
   ],

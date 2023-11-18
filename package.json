@@ -15,5 +15,9 @@
     "nuxt-primevue": "^0.2.0",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "prettier": "^3.1.0",
+    "typescript": "^5.2.2"
   }
 }
