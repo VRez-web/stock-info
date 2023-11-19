@@ -1,8 +1,13 @@
-<script setup>
+<script setup lang="ts">
+import type {INews} from "~/types/news";
+
+const {data: news, pending} = await useAPIFetch<INews[]>('news?category=general', {
+  transform: (news) => news.slice(0, 20)
+})
+
 </script>
 
 <template>
-  <PrimeButton>
-    hello
-  </PrimeButton>
+  <HomeNewsSkeleton v-if="pending" />
+  <HomeNews v-if="news" :news="news" />
 </template>

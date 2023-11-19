@@ -6,6 +6,12 @@ export default defineNuxtConfig({
     },
   },
   devtools: {enabled: true},
+  runtimeConfig: {
+    public: {
+      baseUrl: 'https://finnhub.io/api/v1/',
+      token: process.env.API_TOKEN
+    }
+  },
   modules: [
     'nuxt-primevue'
   ],
