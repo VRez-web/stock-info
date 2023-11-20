@@ -17,7 +17,7 @@ import AppHeader from "~/components/app/AppHeader.vue";
 <style lang="scss" scoped>
 .layout {
   &__main {
-    margin-top : 10px;
+    margin-top : 5rem;
   }
 }
 </style>
