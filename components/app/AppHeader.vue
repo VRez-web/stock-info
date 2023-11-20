@@ -1,14 +1,24 @@
 <script setup lang="ts">
 import AppSearch from "~/components/app/AppSearch.vue";
+import type {IMarketStatus} from "~/types/marketStatus";
+
+const marketStatus = useState<IMarketStatus>('market-status')
+
+const isMarketOnline = computed(() => marketStatus.value?.isOpen ? 'online' : 'offline')
 </script>
 
 <template>
-  <PrimeToolbar>
+  <PrimeToolbar class="fixed top-0 w-full">
     <template #start>
       <nuxt-link :to="{name:'index'}" class="logo">
         <span>Stock</span>Info
       </nuxt-link>
       <AppSearch />
+    </template>
+    <template #end>
+      <div>
+        <p>Market: {{ isMarketOnline }}</p>
+      </div>
     </template>
   </PrimeToolbar>
 </template>
