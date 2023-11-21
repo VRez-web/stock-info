@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppSearch from "~/components/app/AppSearch.vue";
+import AppSearch from "~/components/app/search/AppSearch.vue";
 import type {IMarketStatus} from "~/types/marketStatus";
 
 const marketStatus = useState<IMarketStatus>('market-status')

@@ -13,7 +13,8 @@ export default defineNuxtConfig({
     }
   },
   modules: [
-    'nuxt-primevue'
+    'nuxt-primevue',
+    '@vueuse/nuxt',
   ],
   primevue: {
     options: {
