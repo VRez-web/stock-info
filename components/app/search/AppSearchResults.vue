@@ -31,11 +31,15 @@ const closeResult = (e) => {
         }"
     >
       <template #option="searchResultItem">
-        <div class="flex align-items-center justify-content-between text-sm w-full">
+        <nuxt-link
+            :to="{name:'stock-symbol', params:{symbol:searchResultItem.option.symbol}}"
+            class="flex align-items-center justify-content-between text-sm w-full"
+            @click=" emit('close', false)"
+        >
           <p class="w-6rem">{{ searchResultItem.option.displaySymbol }}</p>
           <p class="w-7rem">{{ searchResultItem.option.description }}</p>
           <p class="w-7rem">{{ searchResultItem.option.type }}</p>
-        </div>
+        </nuxt-link>
       </template>
       <template #empty>
         <p class="text-sm">No results found. Try a full text search instead.</p>
