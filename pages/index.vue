@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import NewsCardSkeleton from "~/components/NewsCardSkeleton.vue";
 import type {INews} from "~/types/news";
 
 const {data: news, pending} = await useAPIFetch<INews[]>('news?category=general', {
@@ -8,6 +9,6 @@ const {data: news, pending} = await useAPIFetch<INews[]>('news?category=general'
 </script>
 
 <template>
-  <HomeNewsSkeleton v-if="pending" />
+  <NewsCardSkeleton v-if="pending" />
   <HomeNews v-if="news" :news="news" />
 </template>
