@@ -1,10 +1,12 @@
 import {useAPIFetch} from "@/composables/useAPIFetch";
 import {ref} from 'vue'
-import type {IStockDetails} from "~/types/stock/stock";
+import type {IStockDetails, IStockFinance, IStockPrice} from "~/types/stock/stock";
 import type {INews} from "~/types/news";
 
 export const stockNews = ref<INews[] | null>(null)
 export const stockInfo = ref<IStockDetails | null>(null)
+export const stockBasicFinance = ref<IStockFinance | null>(null)
+export const stockPrice = ref<IStockPrice | null>(null)
 export const stockInfoLoading = ref<boolean>(true)
 export const stockNewsLoading = ref<boolean>(true)
 
@@ -32,4 +34,10 @@ export const useStock = async (symbol?: string) => {
   } = await useAPIFetch<IStockDetails>(`/stock/profile2?symbol=${symbol}`)
   stockInfo.value = stockInfoData.value
   stockInfoLoading.value = infoLoading.value
+
+  const {data: financeData} = await useAPIFetch<IStockFinance>(`/stock/metric?symbol=${symbol}&metric=all`)
+  stockBasicFinance.value = financeData.value
+
+  const {data: stockDataPrice} = await useAPIFetch<IStockPrice>(`/quote?symbol=${symbol}`)
+  stockPrice.value = stockDataPrice.value
 }

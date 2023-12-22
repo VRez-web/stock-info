@@ -1,29 +1,36 @@
 <script setup lang="ts">
-import {stockInfo} from "~/composables/stock/stockDetails";
+import TabOverviewTableItem from "~/components/stock/details/TabOverviewTableItem.vue";
+import {stockInfo, stockBasicFinance} from "~/composables/stock/stockDetails";
+import {formatPrice} from "~/utils/formatPrice";
 
+
+const capitalization = computed(() => stockInfo ? formatPrice(stockInfo.value.marketCapitalization) : '')
+const eps = computed(() => stockBasicFinance.value?.metric?.epsExclExtraItemsTTM.toFixed(2))
 </script>
 
 <template>
-  <div>
-    <table>
-      <tbody>
-      <tr class="border-bottom-1 border-red-300">
-        <td>Country</td>
-        <td>{{ stockInfo?.country }}</td>
-      </tr>
-      <tr class="border-bottom-1 border-red-100">
-        <td>Market Cap</td>
-        <td>{{ stockInfo?.marketCapitalization }}</td>
-      </tr>
-      <tr class="border-bottom-1 border-red-100">
-        <td>IPO</td>
-        <td>{{ stockInfo?.ipo }}</td>
-      </tr>
-      <tr class="border-bottom-1 border-red-100">
-        <td>Industry</td>
-        <td>{{ stockInfo?.finnhubIndustry }}</td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="flex gap-4">
+    <div>
+      <tab-overview-table-item :header="'Market Cap'">
+        {{ capitalization }}
+      </tab-overview-table-item>
+      <tab-overview-table-item :header="'Country'">
+        {{ stockInfo?.country }}
+      </tab-overview-table-item>
+      <tab-overview-table-item :header="'EPS'">
+        {{ eps }}
+      </tab-overview-table-item>
+    </div>
+    <div>
+      <tab-overview-table-item :header="'52-Week Range'">
+        {{ stockBasicFinance?.metric['52WeekLow'] }} - {{ stockBasicFinance?.metric['52WeekHigh'] }}
+      </tab-overview-table-item>
+      <tab-overview-table-item :header="'Beta'">
+        {{ stockBasicFinance?.metric?.beta.toFixed(2) }}
+      </tab-overview-table-item>
+      <tab-overview-table-item :header="'PE ttm'">
+        {{ stockBasicFinance?.metric?.peTTM.toFixed(2) }}
+      </tab-overview-table-item>
+    </div>
   </div>
 </template>
